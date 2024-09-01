@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polybot
+  labels:
+    app: polybot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polybot
+  template:
+    metadata:
+        labels:
+          app: polybot
+    spec:
+      containers:
+      - name: server
+        image: ehabo215/polybot:latest
+        env:
+          - name: POLYBOT_APP
+            value: http://netflix-catalog-service:8080
+          - name: REDIS_URL
+            value: redis-service:6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polybot-service
+spec:
+  selector:
+    app: polybot
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
