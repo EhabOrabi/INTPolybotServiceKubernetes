@@ -72,7 +72,7 @@ Create the `ClusterConfiguration` object manifest:
 ```yaml
 # cluster-configs.yaml
 
-apiVersion: kubeadm.k8s.io/v1beta3
+apiVersion: kubeadm.k8s-old.io/v1beta3
 kind: ClusterConfiguration
 clusterName: <your-cluster-name>   # TODO change to your cluster name
 apiServer:

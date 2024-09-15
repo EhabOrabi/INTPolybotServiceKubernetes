@@ -10,7 +10,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # sysctl params required by setup, params persist across reboots
-cat <<EOF | tee /etc/sysctl.d/k8s.conf
+cat <<EOF | tee /etc/sysctl.d/k8s-old.conf
 net.ipv4.ip_forward = 1
 EOF
 
