@@ -1,0 +1,24 @@
+apiVersion: networking.k8s-old.io/v1
+kind: Ingress
+metadata:
+  name: polybot
+  namespace: dev
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - ehabo-polybot-k8s-old-v1.int-devops.click
+    secretName: polybot-tls
+  rules:
+  - host: ehabo-polybot-k8s-old-v1.int-devops.click
+    http:
+      paths:
+      - path: /  # Correctly specified under paths
+        pathType: Prefix
+        backend:
+          service:
+            name: polybot-service-1
+            port:
+              number: 8443
+  ingressClassName: nginx  # Ensure this is at the right level
